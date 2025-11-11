@@ -20,7 +20,8 @@ set(LIB_SRCS
     config_file_reader.cc
     dlog.cc
     util.cc
-    lock.cc # <-- 如果 lock.h 有对应的 .cc 文件，请保留
+    lock.cc 
+    util_pdu.cc
 )
 
 add_library(redis_pool STATIC ${LIB_SRCS})
