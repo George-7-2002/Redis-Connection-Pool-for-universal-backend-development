@@ -19,23 +19,28 @@ Automatic Reconnection: The CacheConn::Init() method includes logic to automatic
 # Project Structure
 The project is broken down into several key components:
 
-CacheConn: The lowest level. This class wraps a single redisContext (from hiredis). It handles the logic for connecting, authenticating, selecting a DB, and executing raw Redis commands.
+## CacheConn
+ The lowest level. This class wraps a single redisContext (from hiredis). It handles the logic for connecting, authenticating, selecting a DB, and executing raw Redis commands.
 
-CachePool: Manages a free_list_ of CacheConn objects for one specific Redis instance. It contains the core thread-safe logic for GetCacheConn() and RelCacheConn().
+## CachePool
+Manages a free_list_ of CacheConn objects for one specific Redis instance. It contains the core thread-safe logic for GetCacheConn() and RelCacheConn().
 
-CacheManager: A singleton that acts as the main entry point for the application. It holds a std::map to manage all available CachePools by name.
+## CacheManager 
+A singleton that acts as the main entry point for the application. It holds a std::map to manage all available CachePools by name.
 
-DLog: A singleton wrapper for spdlog that provides a globally accessible logger.
+## DLog 
+A singleton wrapper for spdlog that provides a globally accessible logger.
 
-CConfigFileReader: A simple utility class to parse key-value pairs from a configuration file.
+## CConfigFileReader
+A simple utility class to parse key-value pairs from a configuration file.
 
-util (.h/.cc): Provides various helper functions, such as CStrExplode for string splitting and CRefObject for reference counting.
+## uti
+lProvides various helper functions, such as CStrExplode for string splitting and CRefObject for reference counting.
 
 # Dependencies
 A C++11 (or higher) compliant compiler
 
-hiredis library (e.g., libhiredis-dev)
+redis (version>4.1.0)
 
 spdlog library (e.g., libspdlog-dev)
 
-# How to Build
